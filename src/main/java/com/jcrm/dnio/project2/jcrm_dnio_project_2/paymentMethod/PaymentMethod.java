@@ -18,24 +18,29 @@ public class PaymentMethod {
             generator = "payment_method_sequence"
     )
     private Long id;
+    @Column(length = 6)
     private String code;
+    @Column(length = 50, nullable = false)
     private String description;
     private float interestRate;
     private float tax;
 
-    public PaymentMethod(String code, String description, Long interestRate, Long tax) {
+    public PaymentMethod(String code, String description, float interestRate, float tax) {
         this.code = code;
         this.description = description;
         this.interestRate = interestRate;
         this.tax = tax;
     }
 
-    public PaymentMethod(Long id, String code, String description, Long interestRate, Long tax) {
+    public PaymentMethod(Long id, String code, String description, float interestRate, float tax) {
         this.id = id;
         this.code = code;
         this.description = description;
         this.interestRate = interestRate;
         this.tax = tax;
+    }
+
+    public PaymentMethod() {
     }
 
     public Long getId() {
