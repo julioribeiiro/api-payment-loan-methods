@@ -20,8 +20,8 @@ public class PaymentMethod {
     private Long id;
     private String code;
     private String description;
-    private Long interestRate;
-    private Long tax;
+    private float interestRate;
+    private float tax;
 
     public PaymentMethod(String code, String description, Long interestRate, Long tax) {
         this.code = code;
@@ -62,19 +62,19 @@ public class PaymentMethod {
         this.description = description;
     }
 
-    public Long getInterestRate() {
+    public float getInterestRate() {
         return interestRate;
     }
 
-    public void setInterestRate(Long interestRate) {
+    public void setInterestRate(float interestRate) {
         this.interestRate = interestRate;
     }
 
-    public Long getTax() {
+    public float getTax() {
         return tax;
     }
 
-    public void setTax(Long tax) {
+    public void setTax(float tax) {
         this.tax = tax;
     }
 }
