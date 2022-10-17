@@ -5,7 +5,6 @@ import com.jcrm.dnio.project2.jcrm_dnio_project_2.loan.Loan;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "payment_item")
 public class PaymentItem {
     @Id
     @SequenceGenerator(
@@ -19,15 +18,14 @@ public class PaymentItem {
     )
     private Long id;
 
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne(cascade={CascadeType.PERSIST})
+    @JoinColumn(name="loan_id")
     private Loan loan;
 
     private String paymentMethodCode;
 
-    @Column(nullable = false)
     private double value;
 
-    @Column(nullable = false)
     private Long monthsDeadLine;
 
     private double taxPaid;

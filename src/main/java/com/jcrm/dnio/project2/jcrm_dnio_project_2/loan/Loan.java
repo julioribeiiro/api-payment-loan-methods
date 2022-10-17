@@ -3,6 +3,7 @@ package com.jcrm.dnio.project2.jcrm_dnio_project_2.loan;
 import com.jcrm.dnio.project2.jcrm_dnio_project_2.paymentItem.PaymentItem;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,45 +20,25 @@ public class Loan {
             strategy = GenerationType.SEQUENCE,
             generator = "loan_sequence"
     )
-    private Long id;
+    private Long bankReference;
     private String cnpj;
     private Date loanDate;
 
-    private Long bankReference;
-
-    @OneToMany
-    private List<PaymentItem> paymentItems;
+    @OneToMany(mappedBy = "loan", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    private List<PaymentItem> paymentItems = new ArrayList<>();
 
     public Loan() {
     }
 
-    public Loan(Long id, String cnpj, Date loanDate, List<PaymentItem> paymentItems) {
-        this.id = id;
+    public Loan(String cnpj, Date loanDate) {
         this.cnpj = cnpj;
         this.loanDate = loanDate;
-        this.paymentItems = paymentItems;
     }
 
     public Loan(String cnpj, Date loanDate, List<PaymentItem> paymentItems) {
         this.cnpj = cnpj;
         this.loanDate = loanDate;
         this.paymentItems = paymentItems;
-    }
-
-    public Loan(Long id, String cnpj, Date loanDate, Long bankReference, List<PaymentItem> paymentItems) {
-        this.id = id;
-        this.cnpj = cnpj;
-        this.loanDate = loanDate;
-        this.bankReference = bankReference;
-        this.paymentItems = paymentItems;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getCnpj() {
