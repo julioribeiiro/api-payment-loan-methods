@@ -17,9 +17,9 @@ public class LoanService {
     }
 
     public ResponseEntity<Loan> addLoan(Loan loan) {
-//        if (paymentMethod.getTax() < 0 || paymentMethod.getTax() > 1 || paymentMethod.getInterestRate() < 0) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
+        if (loanRepository.existsByCnpj(loan.getCnpj())) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(loanRepository.save(loan), HttpStatus.CREATED);
     }
 

@@ -39,9 +39,8 @@ public class PaymentItem {
         this.taxPaid = taxPaid;
     }
 
-    public PaymentItem(Long id, Loan loan, String paymentMethodCode, double value, Long monthsDeadLine, double taxPaid, double finalValue) {
+    public PaymentItem(Long id, String paymentMethodCode, double value, Long monthsDeadLine, double taxPaid, double finalValue) {
         this.id = id;
-        this.loan = loan;
         this.paymentMethodCode = paymentMethodCode;
         this.value = value;
         this.monthsDeadLine = monthsDeadLine;
@@ -50,5 +49,61 @@ public class PaymentItem {
     }
 
     public PaymentItem() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Loan getLoan() {
+        return loan;
+    }
+
+    public void setLoan(Loan loan) {
+        this.loan = loan;
+    }
+
+    public String getPaymentMethodCode() {
+        return paymentMethodCode;
+    }
+
+    public void setPaymentMethodCode(String paymentMethodCode) {
+        this.paymentMethodCode = paymentMethodCode;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    public Long getMonthsDeadLine() {
+        return monthsDeadLine;
+    }
+
+    public void setMonthsDeadLine(Long monthsDeadLine) {
+        this.monthsDeadLine = monthsDeadLine;
+    }
+
+    public double getTaxPaid() {
+        return taxPaid;
+    }
+
+    public void setTaxPaid(double taxPaid) {
+        this.taxPaid = taxPaid;
+    }
+
+    public double getFinalValue() {
+        return finalValue;
+    }
+
+    public void setFinalValue(double finalValue) {
+        this.finalValue = finalValue;
     }
 }
