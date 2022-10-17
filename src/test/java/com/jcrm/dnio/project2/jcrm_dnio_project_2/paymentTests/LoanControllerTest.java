@@ -34,16 +34,16 @@ public class LoanControllerTest extends JcrmDnioProject2ApplicationTest {
     public void POSTTestLoanController() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.post("http://localhost:8080/api/v1/loan")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{ \"cnpj\": \"12332112332112\", \"loanDate\": \"2022-10-17\"}")
+                        .content("{ \"cnpj\": \"09507468000141\", \"loanDate\": \"2022-10-19\"}")
                 ).andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
-                .andExpect(jsonPath("$.cnpj").value("12332112332112"));
+                .andExpect(jsonPath("$.cnpj").value("09507468000141"));
     }
 
     @Test(expected = NestedServletException.class)
     public void POSTTestLoanControllerErrorCnpjLength() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.post("http://localhost:8080/api/v1/loan")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"cnpj\": \"12332112332112312\", \"loanDate\": \"2022-10-17\"}")
+                .content("{ \"cnpj\": \"0950746800014\", \"loanDate\": \"2022-10-19\"}")
         ).andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
@@ -51,7 +51,7 @@ public class LoanControllerTest extends JcrmDnioProject2ApplicationTest {
     public void POSTTestLoanControllerErrorDate() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.post("http://localhost:8080/api/v1/loan")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"cnpj\": \"21231332123123\", \"date\": \"2020-10-17\" }")
+                .content("{ \"cnpj\": \"09507468000141\", \"date\": \"2020-10-16\" }")
         ).andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
@@ -60,7 +60,7 @@ public class LoanControllerTest extends JcrmDnioProject2ApplicationTest {
         Integer id = 8;
         this.mockMvc.perform(MockMvcRequestBuilders.put("http://localhost:8080/api/v1/loan/edit" + id)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"cnpj\": \"21231332123113\", \"date\": \"2022-10-17\" }")
+                .content("{ \"cnpj\": \"0950746800041\", \"date\": \"2022-10-19\" }")
         ).andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
@@ -69,7 +69,7 @@ public class LoanControllerTest extends JcrmDnioProject2ApplicationTest {
         Integer id = 8;
         this.mockMvc.perform(MockMvcRequestBuilders.put("http://localhost:8080/api/v1/loan/edit" + id)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"cnpj\": \"21231332123123\", \"date\": \"2020-10-15\" }")
+                .content("{ \"cnpj\": \"09507468000141\", \"date\": \"2020-10-15\" }")
         ).andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 

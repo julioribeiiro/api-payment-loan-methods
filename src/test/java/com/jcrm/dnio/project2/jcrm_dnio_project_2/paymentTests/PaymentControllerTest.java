@@ -33,7 +33,7 @@ public class PaymentControllerTest extends JcrmDnioProject2ApplicationTest {
     public void POSTTestPaymentController() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.post("http://localhost:8080/api/v1/payment_method")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"code\": \"912122\", \"description\": \"testando 23\", \"interestRate\": 1, \"tax\": 1}")
+                        .content("{\"code\": \"912122\", \"description\": \"testando 23\", \"interestRate\": 0.5, \"tax\": 0.6}")
                 ).andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
                 .andExpect(jsonPath("$.code").value("912122"))
                 .andExpect(jsonPath("$.description").value("testando 23"))
