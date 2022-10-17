@@ -27,4 +27,17 @@ public class LoanService {
     public ResponseEntity<List<Loan>> getAllLoans() {
         return new ResponseEntity<>(loanRepository.findAll(), HttpStatus.OK);
     }
+
+    public ResponseEntity<String> deletePaymentMethod(Long id) {
+        if (!loanRepository.existsById(id)) {
+            return new ResponseEntity<>("Loan's id does not exist", HttpStatus.BAD_REQUEST);
+        }
+        loanRepository.deleteById(id);
+        return new ResponseEntity<>("Loan successfully deleted", HttpStatus.NO_CONTENT);
+    }
+
+    public ResponseEntity<Loan> updateLoan(Loan loan) {
+        return new ResponseEntity<>(loanRepository.save(loan), HttpStatus.OK);
+    }
+
 }

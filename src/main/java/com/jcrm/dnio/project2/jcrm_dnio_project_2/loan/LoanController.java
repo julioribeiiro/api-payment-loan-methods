@@ -28,4 +28,15 @@ public class LoanController {
     public ResponseEntity<Loan> addLoan(@RequestBody Loan loan) {
         return loanService.addLoan(loan);
     }
+
+    @DeleteMapping(path = "{id}")
+    public ResponseEntity<String> deleteLoan(@PathVariable("id") Long id) {
+        return loanService.deletePaymentMethod(id);
+    }
+
+    @PutMapping(path = "edit")
+    public ResponseEntity<Loan> updateLoan(@RequestBody Loan loan) {
+        return loanService.updateLoan(loan);
+    }
+
 }

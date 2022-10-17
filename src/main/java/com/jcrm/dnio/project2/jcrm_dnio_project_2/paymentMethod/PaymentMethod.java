@@ -1,6 +1,10 @@
 package com.jcrm.dnio.project2.jcrm_dnio_project_2.paymentMethod;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
 // usando spring data JPA para criar tabela no nosso banco de dados
 @Entity
@@ -18,14 +22,26 @@ public class PaymentMethod {
             generator = "payment_method_sequence"
     )
     private Long id;
-    @Column(length = 6)
-    private String code;
-    @Column(length = 50, nullable = false)
-    private String description;
-    private double interestRate;
-    private double tax;
 
-    public PaymentMethod(String code, String description, double interestRate, double tax) {
+
+    @Size(min = 1, max = 50, message = "Description length max is 50")
+    @NotNull
+    private String description;
+
+    @Size(min = 6, max = 6, message = "Code length need to be 6")
+    @NotNull
+    private String code;
+
+    @DecimalMin(value = "0.0", message = "Interest Rate can't be lower than 0")
+    @NotNull
+    private Double interestRate;
+
+    @DecimalMin(value = "0.0", message = "Tax can't be lower than 0")
+    @DecimalMax(value = "1.0", message = "Tax can't be greater than 1")
+    @NotNull
+    private Double tax;
+
+    public PaymentMethod(String code, String description, Double interestRate, Double tax) {
         this.code = code;
         this.description = description;
         this.interestRate = interestRate;
