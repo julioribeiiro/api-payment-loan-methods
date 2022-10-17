@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 // usando spring data JPA para criar tabela no nosso banco de dados
 @Entity
-@Table(name = "payment_method")
+@Table (name = "payment_method")
 public class PaymentMethod {
     // criamos uma sequencia chamada payment_method_sequence que comeca em 1 e incrementa 1
     @Id
@@ -22,17 +22,17 @@ public class PaymentMethod {
     private String code;
     @Column(length = 50, nullable = false)
     private String description;
-    private float interestRate;
-    private float tax;
+    private double interestRate;
+    private double tax;
 
-    public PaymentMethod(String code, String description, float interestRate, float tax) {
+    public PaymentMethod(String code, String description, double interestRate, double tax) {
         this.code = code;
         this.description = description;
         this.interestRate = interestRate;
         this.tax = tax;
     }
 
-    public PaymentMethod(Long id, String code, String description, float interestRate, float tax) {
+    public PaymentMethod(Long id, String code, String description, double interestRate, double tax) {
         this.id = id;
         this.code = code;
         this.description = description;
@@ -67,19 +67,19 @@ public class PaymentMethod {
         this.description = description;
     }
 
-    public float getInterestRate() {
+    public double getInterestRate() {
         return interestRate;
     }
 
-    public void setInterestRate(float interestRate) {
+    public void setInterestRate(double interestRate) {
         this.interestRate = interestRate;
     }
 
-    public float getTax() {
+    public double getTax() {
         return tax;
     }
 
-    public void setTax(float tax) {
+    public void setTax(double tax) {
         this.tax = tax;
     }
 }
