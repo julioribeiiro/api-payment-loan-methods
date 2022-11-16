@@ -24,7 +24,7 @@ public class PaymentMethod {
     private Long id;
 
 
-    @Size(min = 1, max = 50, message = "Description length max is 50")
+    @Size(min = 1, max = 50, message = "Description length max is 50 and cannot be blank")
     @NotNull
     private String description;
 

@@ -33,19 +33,19 @@ public class PaymentControllerTest extends JcrmDnioProject2ApplicationTest {
     public void POSTTestPaymentController() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.post("http://localhost:8080/api/v1/payment_method")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"code\": \"912122\", \"description\": \"testando 23\", \"interestRate\": 0.5, \"tax\": 0.6}")
+                        .content("{\"code\": \"912123\", \"description\": \"testando 23\", \"interestRate\": 0.5, \"tax\": 0.6}")
                 ).andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
-                .andExpect(jsonPath("$.code").value("912122"))
+                .andExpect(jsonPath("$.code").value("912123"))
                 .andExpect(jsonPath("$.description").value("testando 23"))
-                .andExpect(jsonPath("$.interestRate").value(1.0))
-                .andExpect(jsonPath("$.tax").value(1.0));
+                .andExpect(jsonPath("$.interestRate").value(0.5))
+                .andExpect(jsonPath("$.tax").value(0.6));
     }
 
     @Test(expected = NestedServletException.class)
     public void POSTTestPaymentControllerErrorCodeLength() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.post("http://localhost:8080/api/v1/payment_method")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"code\": \"91234\", \"description\": \"testando 123\", \"interestRate\": 1.0, \"tax\": 1.0}")
+                .content("{\"code\": \"91234\", \"description\": \"testando 123\", \"interestRate\": 0.5, \"tax\": 0.6}")
         ).andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
@@ -53,7 +53,7 @@ public class PaymentControllerTest extends JcrmDnioProject2ApplicationTest {
     public void POSTTestPaymentControllerErrorCodeField() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.post("http://localhost:8080/api/v1/payment_method")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"description\": \"testando 123\", \"interestRate\": 1.0, \"tax\": 1.0}")
+                .content("{\"description\": \"testando 123\", \"interestRate\": 0.3, \"tax\": 0.7}")
         ).andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
@@ -61,7 +61,7 @@ public class PaymentControllerTest extends JcrmDnioProject2ApplicationTest {
     public void POSTTestPaymentControllerErrorDescriptionLength() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.post("http://localhost:8080/api/v1/payment_method")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"code\": \"912122\", \"description\": \"testando 123 testando 123 testando 123 testando 123 testando 123 testando 123testando123testando 123testando 123testando 123testando123testando 123testando123testando 123 \", \"interestRate\": 1, \"tax\": 1}")
+                .content("{\"code\": \"912122\", \"description\": \"testando 123 testando 123 testando 123 testando 123 testando 123 testando 123testando123testando 123testando 123testando 123testando123testando 123testando123testando 123 \", \"interestRate\": 0.1, \"tax\": 0.3}")
         ).andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
@@ -69,7 +69,7 @@ public class PaymentControllerTest extends JcrmDnioProject2ApplicationTest {
     public void POSTTestPaymentControllerErrorDescriptionField() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.post("http://localhost:8080/api/v1/payment_method")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"code\": \"912122\", \"interestRate\": 1, \"tax\": 1}")
+                .content("{\"code\": \"912122\", \"interestRate\": 0.4, \"tax\": 0.6}")
         ).andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
@@ -148,7 +148,7 @@ public class PaymentControllerTest extends JcrmDnioProject2ApplicationTest {
 
     @Test
     public void DELETEPaymentController() throws Exception {
-        Integer id = 11;
+        Integer id = 2;
         this.mockMvc.perform(MockMvcRequestBuilders.delete("http://localhost:8080/api/v1/payment_method/" + id)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
