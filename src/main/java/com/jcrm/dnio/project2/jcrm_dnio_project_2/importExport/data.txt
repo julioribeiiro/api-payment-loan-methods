@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<XML>
+    <paymentMethod>
+        <id>1</id>
+        <code>MTC</code>
+        <description>Mastercard Credito</description>
+        <interest_rate>0.3</interest_rate>
+        <tax>0.5</tax>
+    </paymentMethod>
+    <paymentMethod>
+        <id>2</id>
+        <code>VISAD</code>
+        <description>VISA Debito</description>
+        <interest_rate>0.2</interest_rate>
+        <tax>0.7</tax>
+    </paymentMethod>
+</XML>

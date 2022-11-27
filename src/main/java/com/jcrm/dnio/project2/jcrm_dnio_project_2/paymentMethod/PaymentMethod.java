@@ -98,4 +98,9 @@ public class PaymentMethod {
     public void setTax(double tax) {
         this.tax = tax;
     }
+
+    public String toCSV() {
+        return String.format("'%s', '%s','%s','%s','%s'", this.id, this.code,
+                this.description, this.interestRate, this.tax);
+    }
 }
