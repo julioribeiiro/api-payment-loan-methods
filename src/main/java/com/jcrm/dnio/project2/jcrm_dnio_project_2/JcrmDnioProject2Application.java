@@ -11,7 +11,6 @@ public class JcrmDnioProject2Application {
 
 	public static void main(String[] args) {
 		PaymentImporter paymentImporter = new PaymentImporter();
-		paymentImporter.execute();
 
 		DatabaseLink databaseLink = new DatabaseLink("jdbc:mysql://localhost:3306/jcrm_dnio", "root", "123456789");
 
@@ -22,7 +21,6 @@ public class JcrmDnioProject2Application {
 		dataTo.execute();
 
 //		SpringApplication.run(JcrmDnioProject2Application.class, args);
-
 
 	}
 

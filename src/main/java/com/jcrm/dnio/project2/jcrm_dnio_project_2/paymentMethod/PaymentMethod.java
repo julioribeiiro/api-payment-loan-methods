@@ -56,6 +56,10 @@ public class PaymentMethod {
         this.tax = tax;
     }
 
+    public PaymentMethod(Long id) {
+        this.id = id;
+    }
+
     public PaymentMethod() {
     }
 

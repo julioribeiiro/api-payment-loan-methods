@@ -19,14 +19,12 @@ public class ImporterService extends DefaultHandler {
     private SAXParser parser = null;
     private String currentElement = "";
     private ImporterCallback onValue = null;
-    private Optional<ImporterCallback> onEnd = null;
 
-    public ImporterService(String filePath, ImporterCallback onValue, Optional<ImporterCallback> onEnd) {
+    public ImporterService(String filePath, ImporterCallback onValue) {
         super();
         this.filePath = filePath;
         this.factory = SAXParserFactory.newInstance();
         this.onValue = onValue;
-        this.onEnd = onEnd;
     }
 
     public void execute() {
@@ -52,17 +50,11 @@ public class ImporterService extends DefaultHandler {
     }
 
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        String tag = qName;
         this.currentElement = "";
-
-        this.onEnd.ifPresent(v -> {
-            v.call(tag, "");
-        });
     }
 
     public void characters(char[] ch, int start, int length) {
         String text = new String(ch, start, length);
-
         this.onValue.call(this.currentElement, text);
     }
 }

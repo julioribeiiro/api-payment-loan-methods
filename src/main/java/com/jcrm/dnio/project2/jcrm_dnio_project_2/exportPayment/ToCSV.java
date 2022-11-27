@@ -12,7 +12,7 @@ public class ToCSV {
         this.databaseLink = databaseLink;
         try {
             this.paymentExporter = new ExporterService(
-                    "/Users/jmoraes/git/jcrm_dnio_project_2/src/main/java/com/jcrm/dnio/project2/jcrm_dnio_project_2/importExport/paymentMethods.txt");
+                    "/Users/jmoraes/git/jcrm_dnio_project_2/src/main/java/com/jcrm/dnio/project2/jcrm_dnio_project_2/importPayment/paymentMethods.txt");
         } catch (Exception e) {
             System.out.format("\n[ERROR]:[DATA TO CSV]: %s\n", e.getMessage());
         }
