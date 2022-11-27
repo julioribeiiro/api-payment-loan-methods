@@ -6,7 +6,7 @@ import com.jcrm.dnio.project2.jcrm_dnio_project_2.paymentMethod.PaymentMethod;
 public class ToCSV {
     DatabaseLink databaseLink;
     ExporterService paymentExporter;
-    String paymentContent = "id, aliquot, estimated_value, item_name\n";
+    String paymentContent = "id, code, description, tax\n";
 
     public ToCSV(DatabaseLink databaseLink) {
         this.databaseLink = databaseLink;
@@ -27,15 +27,12 @@ public class ToCSV {
                 Double interestRate = result.getDouble("interest_rate");
                 Double tax = result.getDouble("tax");
 
-                PaymentMethod paymentMethod = new PaymentMethod(id, code, description, interestRate, tax);
-
-                String row = "" + paymentMethod.toCSV() + "\n";
+                String row = "" + String.format("'%s', '%s','%s','%s','%s'", id, code, description, interestRate, tax) + "\n";
 
                 this.paymentContent = paymentContent + row;
             } catch (Exception e) {
                 System.out.println(e);
             }
-
         });
         try {
             this.paymentExporter.execute(this.paymentContent);

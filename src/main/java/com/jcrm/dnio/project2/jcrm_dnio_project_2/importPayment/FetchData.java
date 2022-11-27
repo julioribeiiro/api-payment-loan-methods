@@ -10,8 +10,8 @@ public class FetchData {
     PaymentImporter paymentImporter;
     DatabaseLink databaseLink;
 
-    public FetchData(PaymentImporter paymentImporter, DatabaseLink databaseLink) {
-        this.paymentImporter = paymentImporter;
+    public FetchData(DatabaseLink databaseLink) {
+        this.paymentImporter = new PaymentImporter();
         this.databaseLink = databaseLink;
     }
 
@@ -26,7 +26,6 @@ public class FetchData {
                                     "INSERT INTO payment_method VALUES (%s);",
                                     paymentMethod.toCSV()));
         });
-
     }
 
     public void execute() {

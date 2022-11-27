@@ -12,7 +12,7 @@ public class PaymentImporter {
     public PaymentImporter() {
         this.paymentMethods = new ArrayList<PaymentMethod>();
 
-        this.importer = new ImporterService("/Users/jmoraes/git/jcrm_dnio_project_2/src/main/java/com/jcrm/dnio/project2/jcrm_dnio_project_2/importPayment/data.txt",
+        this.importer = new ImporterService("/Users/jmoraes/git/jcrm_dnio_project_2/src/main/java/com/jcrm/dnio/project2/jcrm_dnio_project_2/importPayment/data.xml",
                 (String t, String v) -> {
 
                     if (t.compareTo("paymentMethod") == 0) {
