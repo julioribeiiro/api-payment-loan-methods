@@ -1,4 +1,4 @@
-package com.jcrm.dnio.project2.jcrm_dnio_project_2.importExport;
+package com.jcrm.dnio.project2.jcrm_dnio_project_2.importPayment;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
@@ -10,6 +10,9 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+interface ImporterCallback {
+    public void call(String tag, String value);
+}
 public class ImporterService extends DefaultHandler {
     private String filePath = null;
     private SAXParserFactory factory = null;

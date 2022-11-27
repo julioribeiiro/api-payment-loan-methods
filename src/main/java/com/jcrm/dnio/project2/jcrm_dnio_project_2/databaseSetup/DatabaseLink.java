@@ -1,4 +1,4 @@
-package com.jcrm.dnio.project2.jcrm_dnio_project_2.importExport;
+package com.jcrm.dnio.project2.jcrm_dnio_project_2.databaseSetup;
 
 import java.sql.SQLException;
 import java.sql.Connection;
@@ -6,10 +6,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class DatabaseConnector {
+public class DatabaseLink {
     Connection connection = null;
 
-    public DatabaseConnector(String url, String user, String password) {
+    public DatabaseLink(String url, String user, String password) {
         try {
             this.connection = DriverManager.getConnection(url, user, password);
         } catch (Exception e) {

@@ -1,4 +1,4 @@
-package com.jcrm.dnio.project2.jcrm_dnio_project_2.importExport;
+package com.jcrm.dnio.project2.jcrm_dnio_project_2.importPayment;
 
 import com.jcrm.dnio.project2.jcrm_dnio_project_2.paymentMethod.PaymentMethod;
 

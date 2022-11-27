@@ -1,10 +1,9 @@
 package com.jcrm.dnio.project2.jcrm_dnio_project_2;
 
-import com.jcrm.dnio.project2.jcrm_dnio_project_2.importExport.DatabaseConnector;
-import com.jcrm.dnio.project2.jcrm_dnio_project_2.importExport.FetchData;
-import com.jcrm.dnio.project2.jcrm_dnio_project_2.importExport.PaymentImporter;
-import com.jcrm.dnio.project2.jcrm_dnio_project_2.importExport.ToCSV;
-import org.springframework.boot.SpringApplication;
+import com.jcrm.dnio.project2.jcrm_dnio_project_2.databaseSetup.DatabaseLink;
+import com.jcrm.dnio.project2.jcrm_dnio_project_2.importPayment.FetchData;
+import com.jcrm.dnio.project2.jcrm_dnio_project_2.importPayment.PaymentImporter;
+import com.jcrm.dnio.project2.jcrm_dnio_project_2.exportPayment.ToCSV;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
@@ -14,12 +13,12 @@ public class JcrmDnioProject2Application {
 		PaymentImporter paymentImporter = new PaymentImporter();
 		paymentImporter.execute();
 
-		DatabaseConnector databaseConnector = new DatabaseConnector("jdbc:mysql://localhost:3306/jcrm_dnio", "root", "123456789");
+		DatabaseLink databaseLink = new DatabaseLink("jdbc:mysql://localhost:3306/jcrm_dnio", "root", "123456789");
 
-		FetchData dataFrom = new FetchData(paymentImporter, databaseConnector);
+		FetchData dataFrom = new FetchData(paymentImporter, databaseLink);
 		dataFrom.execute();
 
-		ToCSV dataTo = new ToCSV(databaseConnector);
+		ToCSV dataTo = new ToCSV(databaseLink);
 		dataTo.execute();
 
 //		SpringApplication.run(JcrmDnioProject2Application.class, args);

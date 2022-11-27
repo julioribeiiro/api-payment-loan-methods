@@ -1,25 +1,26 @@
-package com.jcrm.dnio.project2.jcrm_dnio_project_2.importExport;
+package com.jcrm.dnio.project2.jcrm_dnio_project_2.importPayment;
 
 
+import com.jcrm.dnio.project2.jcrm_dnio_project_2.databaseSetup.DatabaseLink;
 import com.jcrm.dnio.project2.jcrm_dnio_project_2.paymentMethod.PaymentMethod;
 
 import java.util.List;
 
 public class FetchData {
     PaymentImporter paymentImporter;
-    DatabaseConnector databaseConnector;
+    DatabaseLink databaseLink;
 
-    public FetchData(PaymentImporter paymentImporter, DatabaseConnector databaseConnector) {
+    public FetchData(PaymentImporter paymentImporter, DatabaseLink databaseLink) {
         this.paymentImporter = paymentImporter;
-        this.databaseConnector = databaseConnector;
+        this.databaseLink = databaseLink;
     }
 
     private void importPaymentMethod() {
         List<PaymentMethod> paymentMethods = paymentImporter.execute();
-        this.databaseConnector.update("DELETE FROM payment_method;");
+        this.databaseLink.update("DELETE FROM payment_method;");
 
         paymentMethods.forEach(paymentMethod -> {
-            this.databaseConnector
+            this.databaseLink
                     .update(
                             String.format(
                                     "INSERT INTO payment_method VALUES (%s);",
