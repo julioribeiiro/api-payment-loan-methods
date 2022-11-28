@@ -14,7 +14,7 @@
 	<name>jcrm_dnio_project_2</name>
 	<description>Cadeira de Topicos Comtemporaneos de Computacao, projeto 2.</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>19</java.version>
 	</properties>
 	<dependencies>
 
