@@ -8,11 +8,10 @@ public class ToCSV {
     ExporterService paymentExporter;
     String paymentContent = "id, code, description, tax\n";
 
-    public ToCSV(DatabaseLink databaseLink) {
+    public ToCSV(DatabaseLink databaseLink, String path) {
         this.databaseLink = databaseLink;
         try {
-            this.paymentExporter = new ExporterService(
-                    "/Users/jmoraes/git/jcrm_dnio_project_2/src/main/java/com/jcrm/dnio/project2/jcrm_dnio_project_2/importPayment/paymentMethods.txt");
+            this.paymentExporter = new ExporterService(path);
         } catch (Exception e) {
             System.out.format("\n[ERROR]:[DATA TO CSV]: %s\n", e.getMessage());
         }

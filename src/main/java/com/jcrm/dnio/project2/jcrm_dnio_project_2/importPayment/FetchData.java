@@ -10,8 +10,8 @@ public class FetchData {
     PaymentImporter paymentImporter;
     DatabaseLink databaseLink;
 
-    public FetchData(DatabaseLink databaseLink) {
-        this.paymentImporter = new PaymentImporter();
+    public FetchData(DatabaseLink databaseLink, String path) {
+        this.paymentImporter = new PaymentImporter(path);
         this.databaseLink = databaseLink;
     }
 

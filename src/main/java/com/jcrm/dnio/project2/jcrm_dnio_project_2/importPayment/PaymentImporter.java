@@ -9,10 +9,10 @@ public class PaymentImporter {
     private ImporterService importer;
     private List<PaymentMethod> paymentMethods;
 
-    public PaymentImporter() {
+    public PaymentImporter(String path) {
         this.paymentMethods = new ArrayList<PaymentMethod>();
 
-        this.importer = new ImporterService("/Users/jmoraes/git/jcrm_dnio_project_2/src/main/java/com/jcrm/dnio/project2/jcrm_dnio_project_2/importPayment/data.xml",
+        this.importer = new ImporterService(path,
                 (String t, String v) -> {
 
                     if (t.compareTo("paymentMethod") == 0) {

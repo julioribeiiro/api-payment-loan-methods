@@ -10,12 +10,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class JcrmDnioProject2Application {
 
 	public static void main(String[] args) {
-		DatabaseLink databaseLink = new DatabaseLink("jdbc:mysql://localhost:3306/jcrm_dnio", "root", "123456789");
+		final String databaseUrl = "jdbc:mysql://localhost:3306/jcrm_dnio";
+		final String xmlPath = "/Users/jmoraes/git/jcrm_dnio_project_2/src/main/java/com/jcrm/dnio/project2/jcrm_dnio_project_2/importPayment/data.xml";
+		final String csvUrl = "/Users/jmoraes/git/jcrm_dnio_project_2/src/main/java/com/jcrm/dnio/project2/jcrm_dnio_project_2/importPayment/paymentMethods.txt";
 
-		FetchData dataFrom = new FetchData(databaseLink);
+		DatabaseLink databaseLink = new DatabaseLink(databaseUrl, "root", "123456789");
+
+		FetchData dataFrom = new FetchData(databaseLink, xmlPath);
 		dataFrom.execute();
 
-		ToCSV dataTo = new ToCSV(databaseLink);
+		ToCSV dataTo = new ToCSV(databaseLink, csvUrl);
 		dataTo.execute();
 
 //		SpringApplication.run(JcrmDnioProject2Application.class, args);
